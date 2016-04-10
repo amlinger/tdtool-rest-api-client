@@ -21,12 +21,13 @@ import React, {
 import RefreshableListView from 'react-native-refreshable-listview'
 import Swipeout from 'react-native-swipeout'
 
+const SERVER = 'http://192.168.1.180'
 const MODELS = [{
-  label: 'NEXA Self-learning Switch',
-  value: 'self-learning-switch:nexa',
+  label: 'NEXA Selflearning Switch',
+  value: 'selflearning-switch:nexa',
 }, {
-  label: 'NEXA Self-learning Dimmer',
-  value: 'self-learning-dimmer:nexa',
+  label: 'NEXA Selflearning Dimmer',
+  value: 'selflearning-dimmer:nexa',
 }]
 
 class DeviceForm extends Component {
@@ -166,7 +167,7 @@ class Client extends Component {
 
   addDevice(device) {
     console.log(device)
-    fetch(`http://192.168.1.180/devices/`, {
+    fetch(`${SERVER}/devices/`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -182,7 +183,7 @@ class Client extends Component {
   }
 
   deleteDevice(device) {
-    fetch(`http://192.168.1.180/devices/${device.id}/`, {method: 'DELETE'})
+    fetch(`${SERVER}/devices/${device.id}/`, {method: 'DELETE'})
     .then(data => {
       this.fetchData()
     })
@@ -191,7 +192,7 @@ class Client extends Component {
 
   toggleLight(device) {
     const action = device.lastsentcommand === 'ON' ? 'off' : 'on'
-    fetch(`http://192.168.1.180/devices/${device.id}/${action}`, {
+    fetch(`${SERVER}/devices/${device.id}/${action}`, {
       method: 'POST'
     })
     .then(data => {
@@ -202,11 +203,11 @@ class Client extends Component {
   }
 
   learnDevice(device) {
-    fetch(`http://192.168.1.180/devices/${device.id}/learn/`, {method: 'POST'})
+    fetch(`${SERVER}/devices/${device.id}/learn/`, {method: 'POST'})
   }
 
  fetchData() {
-   fetch('http://192.168.1.180/devices/')
+   fetch('${SERVER}/devices/')
      .then(response => response.json())
      .then(data => {
        this.setState({
