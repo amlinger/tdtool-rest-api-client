@@ -1,0 +1,17 @@
+{
+  "name": "tdtool-rest-api-client",
+  "version": "0.0.1",
+  "description": "A client for the tdtool REST API",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "author": "Anton Amlinger <anton.amlinger@gmail.com> (https://amlinger.me)",
+  "dependencies": {
+    "react": "^0.14.8",
+    "react-native": "^0.23.1",
+    "react-native-refreshable-listview": "^1.3.0",
+    "react-native-swipeout": "^2.0.12"
+  }
+}
