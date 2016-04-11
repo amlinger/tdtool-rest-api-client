@@ -11,7 +11,7 @@ import React, {
   View
 } from 'react-native';
 
-class client extends Component {
+class tdtoolRestApiClient extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('client', () => client);
+AppRegistry.registerComponent('tdtoolRestApiClient', () => tdtoolRestApiClient);

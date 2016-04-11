@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 
 import React, {
   AppRegistry,
@@ -95,7 +91,7 @@ class DeviceForm extends Component {
   }
 }
 
-class Client extends Component {
+class tdtoolRestApiClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -206,51 +202,51 @@ class Client extends Component {
     fetch(`${SERVER}/devices/${device.id}/learn/`, {method: 'POST'})
   }
 
- fetchData() {
-   fetch('${SERVER}/devices/')
-     .then(response => response.json())
-     .then(data => {
-       this.setState({
-         dataSource: this.state.dataSource.cloneWithRows(data),
-         loaded: true,
-       })
-     })
-     .done();
- }
+  fetchData() {
+    fetch(`${SERVER}/devices/`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(data),
+          loaded: true,
+        })
+    })
+    .done();
+  }
 
- renderDevice(device) {
-   return (
-     <Swipeout right={[{
-      text: 'EDIT',
-      color: '#676767',
-      backgroundColor: '#E7E7E7'
-     }, {
-      text: 'LEARN',
-      color: '#676767',
-      backgroundColor: '#D6F6FF',
-      onPress: this.learnDevice.bind(this, device),
-     }, {
-      text: 'DELETE',
-      color: '#676767',
-      backgroundColor: '#FFD4C1',
-      onPress: () => {
-        AlertIOS.prompt(
-          'Confirm deletion',
-          `Are you sure you want to delete "${device.name}"?`,
-          [{
-            text: 'Cancel',
-            style: 'cancel',
-          }, {
-            text: 'Delete',
-            onPress: this.deleteDevice.bind(this, device),
-            style: 'destructive',
-          }],
-          'default'
-        )
-        //this.deleteDevice.bind(this.device),
-      }
-     }]}>
-       <View style={styles.listItem}>
+  renderDevice(device) {
+    return (
+      <Swipeout right={[{
+        text: 'EDIT',
+        color: '#676767',
+        backgroundColor: '#E7E7E7'
+      }, {
+        text: 'LEARN',
+        color: '#676767',
+        backgroundColor: '#D6F6FF',
+        onPress: this.learnDevice.bind(this, device),
+      }, {
+        text: 'DELETE',
+        color: '#676767',
+        backgroundColor: '#FFD4C1',
+        onPress: () => {
+          AlertIOS.prompt(
+            'Confirm deletion',
+            `Are you sure you want to delete "${device.name}"?`,
+            [{
+              text: 'Cancel',
+              style: 'cancel',
+            }, {
+              text: 'Delete',
+              onPress: this.deleteDevice.bind(this, device),
+              style: 'destructive',
+            }],
+            'default'
+          )
+          //this.deleteDevice.bind(this.device),
+        }
+      }]}>
+        <View style={styles.listItem}>
           <TouchableHighlight
             onPress={this.toggleLight.bind(this, device)}
             underlayColor='#F5FCFF'>
@@ -263,9 +259,9 @@ class Client extends Component {
             />
           </TouchableHighlight>
           <Text style={styles.name}>{device.name}</Text>
-       </View>
-     </Swipeout>
-   )
+        </View>
+      </Swipeout>
+    )
   }
 }
 
@@ -328,6 +324,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   // ECFFD1
-});
+})
 
-AppRegistry.registerComponent('client', () => Client);
+AppRegistry.registerComponent('tdtoolRestApiClient', () => tdtoolRestApiClient);

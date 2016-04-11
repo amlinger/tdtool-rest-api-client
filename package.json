@@ -1,5 +1,5 @@
 {
-  "name": "tdtool-rest-api-client",
+  "name": "tdtoolRestApiClient",
   "version": "0.0.1",
   "description": "A client for the tdtool REST API",
   "main": "index.js",
