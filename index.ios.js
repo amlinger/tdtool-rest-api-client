@@ -1,4 +1,8 @@
+'use strict'
 
+/*
+ * React Native imports.
+ */
 import React, {
   AppRegistry,
   Component,
@@ -9,87 +13,23 @@ import React, {
   View,
   ListView,
   TouchableHighlight,
-  TextInput,
-  PickerIOS,
   AlertIOS,
 } from 'react-native';
 
+/*
+ * Third-party imports
+ */
 import RefreshableListView from 'react-native-refreshable-listview'
 import Swipeout from 'react-native-swipeout'
 
-const SERVER = 'http://192.168.1.180'
-const MODELS = [{
-  label: 'NEXA Selflearning Switch',
-  value: 'selflearning-switch:nexa',
-}, {
-  label: 'NEXA Selflearning Dimmer',
-  value: 'selflearning-dimmer:nexa',
-}]
+/*
+ * Settings declarations
+ */
+import settings from './settings'
 
-class DeviceForm extends Component {
+const SERVER = settings.server
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      device: Object.assign({
-        name: '',
-        model: 'self-learning-switch:nexa',
-      }, props.device || {})
-    }
-  }
-
-  onChangeText(text) {
-    this.setState({
-      device: Object.assign({}, this.state.device, {name: text})
-    })
-  }
-
-  render() {
-    console.log(this.state.device)
-    return (
-      <View style={styles.addDeviceForm}>
-        <Text style={styles.addDeviceFormComponent}>
-          NAME:
-        </Text>
-        <TextInput
-          style={styles.addDeviceFormComponent, {
-            height: 40,
-            borderColor: '#E7E7E7',
-            borderWidth: 1,
-            paddingLeft: 10,
-          }}
-          onChangeText={this.onChangeText.bind(this)}
-          placeholder='Device Name'
-          value={this.state.name}/>
-        <Text style={styles.addDeviceFormComponent}>
-          MODEL:
-        </Text>
-        <PickerIOS
-          selectedValue={this.state.device.model}
-          onValueChange={model => this.setState({
-            device: Object.assign({}, this.state.device, {model: model})
-          })}>
-          {MODELS.map(model => (
-            <PickerIOS.Item
-              key={model.value}
-              value={model.value}
-              label={model.label}/>
-          ))}
-        </PickerIOS>
-        <TouchableHighlight
-          onPress={() => this.props.onSubmit(this.state.device)}
-          underlayColor='#ECFFD1'>
-          <View style={styles.addDeviceButton}>
-            <Text style={{textAlign: 'center'}}>
-              ADD{this.state.addDevice && 'ING'} DEVICE
-           </Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    )
-  }
-}
+import DeviceForm from './components/device-form/DeviceForm'
 
 class tdtoolRestApiClient extends Component {
   constructor(props) {
@@ -309,17 +249,6 @@ const styles = StyleSheet.create({
   },
   addDeviceHeader: {
     backgroundColor: '#E7E7E7',
-    paddingBottom: 15,
-    paddingTop: 15,
-  },
-  addDeviceForm: {
-    backgroundColor: '#FFFFFF'
-  },
-  addDeviceFormComponent: {
-    padding: 10,
-  },
-  addDeviceButton: {
-    backgroundColor: '#ECFFD1',
     paddingBottom: 15,
     paddingTop: 15,
   },
